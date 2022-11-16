@@ -15,7 +15,7 @@ on:
     types: [started]
 
 jobs:
-  stale:
+  build_and_upload:
 
     runs-on: ubuntu-latest
     permissions:
@@ -30,3 +30,4 @@ jobs:
         stale-pr-message: 'Stale pull request message'
         stale-issue-label: 'no-issue-activity'
         stale-pr-label: 'no-pr-activity'
+
