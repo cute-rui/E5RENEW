@@ -21,7 +21,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+    env:
+        sec: test
     steps:
     - name: test var
       run: |
