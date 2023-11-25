@@ -23,6 +23,13 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+    - name: test var
+      run: |
+        echo 11234567 > test.txt
+        sec=`cat test.txt`
+    - name: test echo
+      run: |
+        echo $sec
     - name: Checkout
       uses: hmanzur/actions-set-secret@v2.0.0
       with:
