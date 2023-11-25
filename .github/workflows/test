@@ -1,0 +1,30 @@
+name: test secret
+
+on: 
+  release:
+    types: [published]
+  push:
+    tags:
+    - 'v*'
+  #  branches: 
+  #    - master
+  #schedule:
+  #  - cron: "0 * * * *"
+  watch:
+    types: [started]
+   
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: hmanzur/actions-set-secret@v2.0.0
+      with:
+        name: 'Test'
+        value: 'Lorem ipsun dolor simit'
+        repository: hmanzur/actions-set-secret
+        token: ${{ secrets.GH_TOKEN }}
+    - name: echo
+      run: | 
+        echo ${{ secrets.Test }}
