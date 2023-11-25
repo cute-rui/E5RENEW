@@ -19,18 +19,22 @@ on:
     types: [started]
    
 jobs:
+  test:
+    outputs:
+        test-result: ${{ steps.set_outputs.outputs.test-result }}
+    runs-on: ubuntu-latest
+    steps:
+    - name: set outputs
+      id: set_outputs
+      run: |
+        echo "::set-output name=test-result::'daindae'"
   build:
     runs-on: ubuntu-latest
-    env:
-        sec: test
     steps:
-    - name: test var
-      run: |
-        echo 11234567 > test.txt
-        sec=`cat test.txt`
     - name: test echo
       run: |
-        echo $sec
+        echo "::set-env name=TEST_RESULT::${{ needs.test.outputs.test-result }}"
+        echo $TEST_RESULT
     - name: Checkout
       uses: hmanzur/actions-set-secret@v2.0.0
       with:
