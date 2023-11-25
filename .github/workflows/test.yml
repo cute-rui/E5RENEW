@@ -28,7 +28,7 @@ jobs:
       with:
         name: 'Test'
         value: 'Lorem ipsun dolor simit'
-        repository: hmanzur/actions-set-secret
+        repository: cute-rui/E5RENEW
         token: ${{ secrets.GH_TOKEN }}
     - name: echo
       run: | 
