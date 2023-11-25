@@ -33,9 +33,9 @@ jobs:
       uses: hmanzur/actions-set-secret@v2.0.0
       with:
         name: 'Test'
-        value: 'Lorem ipsun dolor simit'
+        value: $sec
         repository: cute-rui/E5RENEW
         token: ${{ secrets.GH_TOKEN }}
     - name: echo
       run: | 
-        echo ${{ secrets.Test }}
+        echo ${#${{ secrets.Test }}}
