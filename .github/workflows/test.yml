@@ -33,7 +33,7 @@ jobs:
       uses: hmanzur/actions-set-secret@v2.0.0
       with:
         name: 'Test'
-        value: $sec
+        value: ${{ env.sec }}
         repository: cute-rui/E5RENEW
         token: ${{ secrets.GH_TOKEN }}
     - name: echo
