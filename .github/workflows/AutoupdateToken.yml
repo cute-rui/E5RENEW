@@ -13,6 +13,11 @@ on:
     - cron: "0 * * * *"
   watch:
     types: [started]
+  workflow_dispatch:
+    inputs:
+      branch:
+        type: string
+        required: false
    
 jobs:
   build:
@@ -45,7 +50,17 @@ jobs:
       run: | 
         rm -f update2.py
         rm -f configid.txt
-        rm -f configkey.txt 
+        rm -f configkey.txt
+    - name: set to env
+      run: |
+        echo "sec=$(cat 1.txt)" >> "$GITHUB_ENV"
+    - name: Set Secret
+      uses: hmanzur/actions-set-secret@v2.0.0
+      with:
+        name: 'SESSION'
+        value: ${{ env.sec }}
+        repository: cute-rui/E5RENEW
+        token: ${{ secrets.GH_TOKEN }}
     - name: Commit #上传新的refresh_token到仓库
       run: |
         git config --global user.email AutoupdateRobot@email.com
