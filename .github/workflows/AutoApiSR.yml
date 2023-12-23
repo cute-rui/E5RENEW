@@ -13,6 +13,11 @@ on:
     - cron: "0 9,13,16 * * 1-5"
   watch:
     types: [started]
+  workflow_dispatch:
+    inputs:
+      branch:
+        type: string
+        required: false
    
 jobs:
   build:
@@ -32,10 +37,12 @@ jobs:
       env: 
         CONFIG_ID: ${{ secrets.CONFIG_ID }} # secrets_id 提供
         CONFIG_KEY: ${{ secrets.CONFIG_KEY }} # secrets_key 提供
+        SESSION: ${{ secrets.SESSION }}
       run: | 
         cp 1.py 2.py
         echo $CONFIG_ID > configid.txt
         echo $CONFIG_KEY > configkey.txt
+        echo $SESSION > 1.txt
         sed -i '10 r configid.txt' 2.py
         sed -i '12 r configkey.txt' 2.py
     - name: Test Api #Api调用
