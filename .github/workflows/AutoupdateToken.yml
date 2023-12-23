@@ -63,16 +63,3 @@ jobs:
         value: ${{ env.sec }}
         repository: cute-rui/E5RENEW
         token: ${{ secrets.GH_TOKEN }}
-    - name: set to env
-      run: |
-        echo ${{ secrets.SESSION }} > 1.txt
-    - name: Commit #上传新的refresh_token到仓库
-      run: |
-        git config --global user.email AutoupdateRobot@email.com
-        git config --global user.name AutoupdateRobot
-        git add .
-        git commit -m "update new refresh_token" -a
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
