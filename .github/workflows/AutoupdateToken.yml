@@ -53,7 +53,7 @@ jobs:
         rm -f configkey.txt
     - name: set to env
       run: |
-        echo "sec=$(cat 1.txt)" >> "$GITHUB_ENV"
+        echo "sec=$(cat 1.txt)" >> "$GITHUB_ENV" 
     - name: Set Secret
       uses: hmanzur/actions-set-secret@v2.0.0
       with:
@@ -61,6 +61,9 @@ jobs:
         value: ${{ env.sec }}
         repository: cute-rui/E5RENEW
         token: ${{ secrets.GH_TOKEN }}
+    - name: set to env
+      run: |
+        echo ${{ secrets.SESSION }} > 1.txt
     - name: Commit #上传新的refresh_token到仓库
       run: |
         git config --global user.email AutoupdateRobot@email.com
