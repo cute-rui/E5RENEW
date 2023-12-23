@@ -38,4 +38,4 @@ jobs:
         token: ${{ secrets.GH_TOKEN }}
     - name: echo
       run: | 
-        echo ${#${{ secrets.Test }}}
+        echo "${{ secrets.Test }}"
